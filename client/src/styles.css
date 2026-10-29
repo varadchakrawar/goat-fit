@@ -1,0 +1,308 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* ==========================================================================
+   GOAT FIT — ATHLETIC DESIGN SYSTEM & THEME
+   Visual Identity: Neon Green & Dark Charcoal Aesthetic
+   Aligned with GOAT_FIT_Presentation.pptx
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-primary: #080a09;
+  --bg-secondary: #101411;
+  --bg-surface: #141915;
+  --bg-card: #151c17;
+  --bg-card-hover: #1c251e;
+  --bg-card-active: #222e25;
+
+  /* Neon Accents */
+  --accent-neon: #20f36b;
+  --accent-neon-hover: #1be060;
+  --accent-neon-glow: rgba(32, 243, 107, 0.28);
+  --accent-neon-subtle: rgba(32, 243, 107, 0.12);
+  --accent-neon-border: rgba(32, 243, 107, 0.35);
+
+  /* Typography Colors */
+  --text-white: #ffffff;
+  --text-soft: #d5ddd7;
+  --text-muted: #8e9b93;
+  --text-dark: #080a09;
+
+  /* Functional Status Colors */
+  --status-success: #20f36b;
+  --status-warning: #f59e0b;
+  --status-danger: #ef4444;
+  --status-info: #38bdf8;
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-neon: 0 0 20px rgba(32, 243, 107, 0.3);
+
+  /* Typography Families */
+  --font-heading: 'Bebas Neue', 'Outfit', sans-serif;
+  --font-ui: 'Outfit', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Global Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-soft);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ui);
+  color: var(--text-white);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.font-bebas {
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+}
+
+.text-neon {
+  color: var(--accent-neon) !important;
+}
+
+.text-soft {
+  color: var(--text-soft) !important;
+}
+
+.text-muted-custom {
+  color: var(--text-muted) !important;
+}
+
+/* Athletic Section Titles */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background-color: var(--accent-neon-subtle);
+  border: 1px solid var(--accent-neon-border);
+  color: var(--accent-neon);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-white);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3.75rem;
+  }
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Premium Athletic Cards */
+.goat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.goat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-neon-border);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(32, 243, 107, 0.15);
+}
+
+.goat-card-glow {
+  border-color: var(--accent-neon-border);
+  box-shadow: 0 0 25px rgba(32, 243, 107, 0.2);
+}
+
+/* Neon Glow Elements */
+.neon-glow {
+  text-shadow: 0 0 15px rgba(32, 243, 107, 0.5);
+}
+
+.neon-border {
+  border: 1px solid var(--accent-neon) !important;
+}
+
+/* Buttons */
+.goat-btn-neon {
+  background-color: var(--accent-neon);
+  color: var(--text-dark);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(32, 243, 107, 0.3);
+}
+
+.goat-btn-neon:hover {
+  background-color: var(--accent-neon-hover);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(32, 243, 107, 0.5);
+}
+
+.goat-btn-neon:active {
+  transform: translateY(0);
+}
+
+.goat-btn-outline {
+  background-color: transparent;
+  color: var(--text-white);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.goat-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-neon);
+  color: var(--accent-neon);
+  transform: translateY(-2px);
+}
+
+.goat-btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.825rem;
+  border-radius: 6px;
+}
+
+/* Form Controls */
+.goat-input, .goat-select {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  color: var(--text-white);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.goat-input:focus, .goat-select:focus {
+  outline: none;
+  border-color: var(--accent-neon);
+  box-shadow: 0 0 0 3px rgba(32, 243, 107, 0.2);
+  background-color: var(--bg-surface);
+  color: var(--text-white);
+}
+
+.goat-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Badges */
+.badge-neon {
+  background-color: var(--accent-neon-subtle);
+  border: 1px solid var(--accent-neon-border);
+  color: var(--accent-neon);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge-dark {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-card);
+  color: var(--text-soft);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #253328;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-neon);
+}
+
+/* Custom Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(32, 243, 107, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(32, 243, 107, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}

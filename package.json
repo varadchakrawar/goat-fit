@@ -1,0 +1,33 @@
+{
+  "name": "goat-fit-monorepo",
+  "version": "1.0.0",
+  "description": "GOAT FIT — Be Your Own GOAT | Full-Stack Athletic Training, Nutrition & Workout Split Web App | SPPU Third Year IT WAD Mini-Project",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm --prefix server start",
+    "client": "npm --prefix client start",
+    "seed": "npm --prefix server run seed",
+    "test": "npm --prefix server test",
+    "test:server": "npm --prefix server test",
+    "build": "npm --prefix client run build",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "goat-fit",
+    "sppu",
+    "wad",
+    "angular",
+    "typescript",
+    "express",
+    "nodejs",
+    "mongodb",
+    "mongoose",
+    "fitness",
+    "tdee"
+  ],
+  "author": "SPPU Third Year IT Engineer",
+  "license": "MIT"
+}

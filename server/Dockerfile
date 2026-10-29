@@ -1,0 +1,15 @@
+# GOAT FIT Express API Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Bundle app source
+COPY . .
+
+EXPOSE 5000
+
+CMD ["node", "src/server.js"]

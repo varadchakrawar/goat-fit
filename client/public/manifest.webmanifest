@@ -1,0 +1,17 @@
+{
+  "name": "GOAT FIT — Be Your Own GOAT",
+  "short_name": "GOAT FIT",
+  "description": "Science-backed workout programs, exercise guidance, Mifflin-St Jeor macro calculator, and hydration tracking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080A09",
+  "theme_color": "#20F36B",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["fitness", "health", "sports", "lifestyle"]
+}

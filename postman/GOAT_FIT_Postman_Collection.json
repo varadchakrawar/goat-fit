@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "goat-fit-api-collection-2026",
+    "name": "GOAT FIT REST API Collection (SPPU WAD)",
+    "description": "Comprehensive Postman test suite for GOAT FIT — Be Your Own GOAT full-stack fitness application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Athlete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.environment.set('authToken', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Mercer\",\n  \"email\": \"alex.mercer@goatfit.test\",\n  \"password\": \"goatfit123\",\n  \"confirmPassword\": \"goatfit123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login Athlete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.environment.set('authToken', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"demo@goatfit.com\",\n  \"password\": \"goatfit123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current Athlete (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex 'Titan' Mercer\",\n  \"fitnessProfile\": {\n    \"age\": 25,\n    \"weightKg\": 82,\n    \"heightCm\": 182,\n    \"fitnessGoal\": \"gain\",\n    \"activityLevel\": \"heavy\",\n    \"experienceLevel\": \"advanced\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workouts",
+      "item": [
+        {
+          "name": "List All Programs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/workouts",
+              "host": ["{{baseUrl}}"],
+              "path": ["workouts"]
+            }
+          }
+        },
+        {
+          "name": "Filter by Muscle Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/workouts?category=Chest",
+              "host": ["{{baseUrl}}"],
+              "path": ["workouts"],
+              "query": [{ "key": "category", "value": "Chest" }]
+            }
+          }
+        },
+        {
+          "name": "Filter by Difficulty",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/workouts?difficulty=Advanced",
+              "host": ["{{baseUrl}}"],
+              "path": ["workouts"],
+              "query": [{ "key": "difficulty", "value": "Advanced" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exercises",
+      "item": [
+        {
+          "name": "List All Exercises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/exercises",
+              "host": ["{{baseUrl}}"],
+              "path": ["exercises"]
+            }
+          }
+        },
+        {
+          "name": "Search Exercises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/exercises?search=Bench",
+              "host": ["{{baseUrl}}"],
+              "path": ["exercises"],
+              "query": [{ "key": "search", "value": "Bench" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Weekly Planner",
+      "item": [
+        {
+          "name": "Get User Weekly Split",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/planner",
+              "host": ["{{baseUrl}}"],
+              "path": ["planner"]
+            }
+          }
+        },
+        {
+          "name": "Toggle Day Completion",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/planner/day/0/toggle-complete",
+              "host": ["{{baseUrl}}"],
+              "path": ["planner", "day", "0", "toggle-complete"]
+            }
+          }
+        },
+        {
+          "name": "Reset Week Adherence",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/planner/reset",
+              "host": ["{{baseUrl}}"],
+              "path": ["planner", "reset"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hydration Tracker",
+      "item": [
+        {
+          "name": "Get Today Hydration Log",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/hydration/today",
+              "host": ["{{baseUrl}}"],
+              "path": ["hydration", "today"]
+            }
+          }
+        },
+        {
+          "name": "Log 250ml Glass",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amountMl\": 250,\n  \"volumeMl\": 250\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hydration/log",
+              "host": ["{{baseUrl}}"],
+              "path": ["hydration", "log"]
+            }
+          }
+        },
+        {
+          "name": "Undo Logged Glass",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amountMl\": 250,\n  \"volumeMl\": 250\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/hydration/remove",
+              "host": ["{{baseUrl}}"],
+              "path": ["hydration", "remove"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Nutrition & TDEE",
+      "item": [
+        {
+          "name": "Calculate Mifflin-St Jeor TDEE",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"age\": 24,\n  \"biologicalSex\": \"male\",\n  \"heightCm\": 178,\n  \"weightKg\": 78,\n  \"activityLevel\": \"moderate\",\n  \"goal\": \"gain\",\n  \"macroSplit\": {\n    \"proteinPercent\": 35,\n    \"carbsPercent\": 45,\n    \"fatsPercent\": 20\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/nutrition/calculate",
+              "host": ["{{baseUrl}}"],
+              "path": ["nutrition", "calculate"]
+            }
+          }
+        },
+        {
+          "name": "Get Saved Nutrition Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/nutrition/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["nutrition", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workout Sessions",
+      "item": [
+        {
+          "name": "Record Completed Workout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workoutTitle\": \"Chest Annihilation & Upper Pec Sculpt\",\n  \"durationMinutes\": 52,\n  \"completedExercises\": [\n    {\n      \"exerciseName\": \"Barbell Bench Press\",\n      \"sets\": [\n        { \"setNumber\": 1, \"reps\": 10, \"weightKg\": 80, \"completed\": true },\n        { \"setNumber\": 2, \"reps\": 8, \"weightKg\": 85, \"completed\": true }\n      ]\n    }\n  ],\n  \"notes\": \"Strong session with explosive power output.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": ["{{baseUrl}}"],
+              "path": ["sessions"]
+            }
+          }
+        },
+        {
+          "name": "Get User Workout History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": ["{{baseUrl}}"],
+              "path": ["sessions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public Forms",
+      "item": [
+        {
+          "name": "Subscribe to Newsletter",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"athlete.reader@goatfit.test\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/public/newsletter",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "newsletter"]
+            }
+          }
+        },
+        {
+          "name": "Send Message to Coaching HQ",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Marcus Strong\",\n  \"email\": \"marcus@strong.test\",\n  \"message\": \"Inquiring about progressive overload periodization programs.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/public/contact",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "contact"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

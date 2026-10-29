@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongodb:
+    image: mongo:7.0
+    container_name: goatfit-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: goatfit
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - goatfit-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Express.js REST API Backend Service
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: goatfit-server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/goatfit
+      JWT_SECRET: goat_fit_super_secret_jwt_key_sppu_wad_2026
+      JWT_EXPIRES_IN: 7d
+      CLIENT_URL: http://localhost:4200
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - goatfit-network
+
+  # Angular Frontend Application (Nginx SPA)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: goatfit-client
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - server
+    networks:
+      - goatfit-network
+
+networks:
+  goatfit-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

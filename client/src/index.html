@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GOAT FIT — Be Your Own GOAT | Elite Athletic Training</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GOAT FIT is a science-backed athletic web app combining elite workout splits, real-time exercise coaching, Mifflin-St Jeor TDEE macro targets, and hydration tracking.">
+  <meta name="theme-color" content="#080A09">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Google Fonts: Bebas Neue for athletic headers, Outfit for modern UI, Inter for clean body copy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="goat-dark-theme">
+  <app-root></app-root>
+  <script>
+    if ('serviceWorker' in navigator && window.location.hostname === 'localhost') {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          for (let name of names) caches.delete(name);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
