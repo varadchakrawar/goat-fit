@@ -9,8 +9,8 @@ export class ApiService {
   private http = inject(HttpClient);
   public readonly baseUrl =
     typeof window !== 'undefined' &&
-    window.location.hostname !== 'localhost' &&
-    window.location.hostname !== '127.0.0.1'
+    (window.location.port !== '4200' ||
+      (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'))
       ? '/api'
       : 'http://localhost:5000/api';
 
